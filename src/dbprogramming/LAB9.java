@@ -8,12 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
 
-
 /**
  *
  * @author Student
  */
-public class LAB8 {
+public class LAB9 {
 
     /**
      * @param args the command line arguments
@@ -24,22 +23,19 @@ public class LAB8 {
         String password = "mysql@sit";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver loaded");
             Connection connection= DriverManager.getConnection(URL, username, password);
-            System.out.println("Database Connected");
             Statement statement = connection.createStatement();
-            String sql ="SELECT * FROM student";
-            ResultSet results = statement.executeQuery(sql);
+            String sql ="INSERT INTO student(studentID,firstName,lastName,email,deptID)"+
+                    "VALUES('111111','aaaa','bbbb','aaaa@kmutt.ac.th','IT')";
             
-            
-            while (results.next()) {
-                System.out.println(results.getString(1)+" "+results.getString(2)+" "+results.getString(3)+" "+results.getString(4)+" "+results.getString(5));
-            } 
+            statement.executeUpdate(sql);
+           
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LAB8.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LAB8.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    }
     
-}
+
